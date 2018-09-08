@@ -3,7 +3,7 @@ var express = require('express');
 var routes = function(Book){
     bookRouter = express.Router();
 
-    bookRouter.route('/books')
+    bookRouter.route('/')
     .post(function(req, res){
         var book = new Book(req.body);
         book.save();
@@ -25,12 +25,25 @@ var routes = function(Book){
         })
     });
 
-    bookRouter.route('/books/:id')
+    bookRouter.route('/:id')
     .get(function(req, res){
         Book.findById(req.params.id, function(err, book){
             if (err)
                 res.status(500).send(err);
             else
+                res.json(book);
+        })
+    })
+    .put(function(req, res){
+        Book.findById(req.params.id, function(err, book){
+            if (err)
+                res.status(500).send(err);
+            else
+                book.title = req.body.title;
+                book.author = req.body.author;
+                book.genre = req.body.genre;
+                book.read = req.body.read;
+                book.save();
                 res.json(book);
         })
     });
