@@ -30,6 +30,7 @@ var routes = function(Book){
         var returnBook = req.book.toJSON();
         returnBook.links = {};
         returnBook.links.FilterByThisGenre = encodeURI('http://' + req.headers.host + '/api/books/?genre=' + returnBook.genre);
+        returnBook.links.self = encodeURI('http://' + req.headers.host + '/api/books/' + returnBook._id);
         res.json(returnBook);
     })
     .put(function(req, res){

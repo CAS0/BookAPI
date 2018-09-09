@@ -7,3 +7,6 @@ Or, if you don't want/need a background service you can just run:
 
 To run use the command:
 gulp
+
+To run unit / integration tests, use the command:
+gulp test

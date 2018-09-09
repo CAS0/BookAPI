@@ -28,4 +28,4 @@ app.listen(port, function(){
     console.log('gulp is running my api on port: ' + port)
 })
 
-module.exports = app;   //used by supertest
+module.exports = app;   //needed by supertest
