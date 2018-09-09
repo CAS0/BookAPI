@@ -5,7 +5,14 @@ var express = require('express'),
 var app = express();
 var port = process.env.port || 3000;
 
-var db = mongoose.connect('mongodb://localhost/BookAPI', {useNewUrlParser:true});
+var db;
+if (process.env.ENV == 'Test') {
+    db = mongoose.connect('mongodb://localhost/BookAPI_Test', {useNewUrlParser:true});
+}
+else {
+    db = mongoose.connect('mongodb://localhost/BookAPI', {useNewUrlParser:true});
+}
+
 var Book = require('./models/bookModel');
 
 app.use(bodyParser.urlencoded({extended:true}));
@@ -20,3 +27,5 @@ app.get('/', function(req, res) {
 app.listen(port, function(){
     console.log('gulp is running my api on port: ' + port)
 })
+
+module.exports = app;   //used by supertest
