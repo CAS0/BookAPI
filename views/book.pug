@@ -1,0 +1,9 @@
+html
+  head
+    title= book.title
+  body
+    h1= 'Title: ' + book.title
+    h2= 'Author: ' + book.author
+    h2= 'Genre: ' + book.genre
+    
+    a(href=book.links.self)= book.links.self

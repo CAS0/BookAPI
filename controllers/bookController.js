@@ -32,7 +32,7 @@ var bookController = function(Book)
                     newBook.links.self = encodeURI('http://' + req.headers.host + '/api/books/' + newBook._id);
                     returnBooks.push(newBook);
                 });
-                res.json(returnBooks);
+                res.render('bookList', { title: 'Book catalogue', books: returnBooks }); //res.json(returnBooks);
             }
         });        
     }
